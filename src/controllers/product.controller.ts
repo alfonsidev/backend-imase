@@ -16,7 +16,7 @@ export const postProduct = async (req: Request, res: Response, next: NextFunctio
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const product = await service.find(req.query);
-    res.json(product);
+    res.status(200).json(product)
   } catch (error) {
     next(error);
   }

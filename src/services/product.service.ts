@@ -1,6 +1,6 @@
 import boom from '@hapi/boom';
 import { Op, FindOptions } from 'sequelize';
-import { uploadImage, deleteImage } from '../libs/cloudinary';
+// import { uploadImage, deleteImage } from '../libs/cloudinary';
 import { Product } from '../db/models/product.model';
 import { PostProductT, UpdateProductT } from '../interfaces/Product';
 import { PostProductDTO } from '../Dto/ProductDTO';
@@ -17,13 +17,13 @@ class ProductService {
     }
 
     // subir imagen a cloudinary
-    const { public_id, secure_url } = await uploadImage(body.image);
+    // const { public_id, secure_url } = await uploadImage(body.image);
 
     const product = {
       name: body.name,
       description: body.description,
-      image: secure_url,
-      public_id,
+      image: body.image,
+      public_id: 'prueba',
       url: body.url,
     }
 
@@ -98,9 +98,9 @@ class ProductService {
   async update(id: string, body: UpdateProductT) {
     const findProduct = await this.findOne(id);
 
-    if (body.image !== findProduct.image) {
-      await deleteImage(findProduct.public_id);
-    }
+    // if (body.image !== findProduct.image) {
+    //   await deleteImage(findProduct.public_id);
+    // }
 
     findProduct.name = body.name;
     findProduct.description = body.description;
@@ -114,7 +114,6 @@ class ProductService {
 
   async delete(id: string) {
     const findProduct = await this.findOne(id);
-    await deleteImage(findProduct.public_id);
     await findProduct.destroy();
   }
 }

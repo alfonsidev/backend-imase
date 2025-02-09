@@ -16,3 +16,8 @@ export const generateJWT = (payload: object, secret: string) => {
   });
 };
 
+export const compareJWT = (token: string, secret: string) => {
+  return jwt.verify(token, secret)
+
+}
+
