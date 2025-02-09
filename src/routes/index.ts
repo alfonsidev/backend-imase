@@ -1,4 +1,4 @@
-import { Application, Router } from 'express';
+import { Express, Router } from 'express';
 import routerProducts from './products.router';
 import routerProduct from './product.router';
 import routerServices from './services.router';
@@ -8,7 +8,7 @@ import routerUser from './users.router';
 import routerAuth from './auth.router';
 
 
-const routerApi = (app: Application) => {
+const routerApi = (app: Express) => {
   const router = Router();
   app.use('/api/v1', router);
   router.use('/productos', routerProducts);

@@ -3,6 +3,7 @@ import 'dotenv/config';
 interface Config {
   env: string;
   port: number | string;
+  dbUrl: string;
   dbDialect: string;
   dbUser: string;
   dbPassword: string;
@@ -22,6 +23,7 @@ interface Config {
 const config: Config = {
   env: process.env.NODE_ENV || 'dev',
   port: process.env.PORT || 3000,
+  dbUrl: process.env.DB_URL!,
   dbDialect: process.env.DB_DIALECT!,
   dbUser: process.env.DB_USER!,
   dbPassword: process.env.DB_PASSWORD!,
